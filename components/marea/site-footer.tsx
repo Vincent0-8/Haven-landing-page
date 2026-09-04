@@ -13,16 +13,16 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer id="quote" className="border-t border-border bg-primary text-primary-foreground">
+    <footer id="contact" className="border-t border-border bg-primary text-primary-foreground">
       {/* CTA band */}
       <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
         <div className="grid gap-8 border-b border-primary-foreground/20 pb-14 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/70">
-              Next step
+              Get in touch
             </p>
             <h2 className="mt-4 max-w-lg text-balance font-serif text-3xl leading-tight md:text-4xl">
-              Tell us about your home and we&apos;ll send a tailored quote.
+              Tell us about your home and we&apos;ll take care of the rest.
             </h2>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
@@ -30,7 +30,7 @@ export function SiteFooter() {
               href="mailto:hello@marea.care"
               className="inline-flex items-center justify-center gap-2 bg-primary-foreground px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-accent hover:text-accent-foreground"
             >
-              Request your quote
+              Contact us
               <ArrowRight className="size-4" aria-hidden="true" />
             </a>
           </div>

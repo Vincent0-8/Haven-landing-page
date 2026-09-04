@@ -61,7 +61,7 @@ export function Services() {
                   {service.body}
                 </p>
                 <a
-                  href="#quote"
+                  href="#contact"
                   className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary transition-colors hover:text-accent"
                 >
                   Explore service

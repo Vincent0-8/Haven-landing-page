@@ -18,7 +18,10 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://haven-landing-page.vercel.app'),
+  metadataBase: new URL('https://haven-landing-app.vercel.app'),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: 'Haven — Coastal home care, calmly maintained',
     template: '%s | Haven',
@@ -27,7 +30,7 @@ export const metadata: Metadata = {
     'Haven is a dependable home cleaning service for busy households. Calm, structured, and consistent care that keeps your space clear, fresh, and ready for real life.',
   openGraph: {
     type: 'website',
-    url: 'https://haven-landing-page.vercel.app',
+    url: 'https://haven-landing-app.vercel.app',
     title: 'Haven — Coastal home care, calmly maintained',
     description:
       'Dependable home care for busy households. We handle the upkeep with precision so your space stays clear, fresh, and ready for real life.',

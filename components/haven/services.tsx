@@ -1,4 +1,7 @@
-import { ArrowRight } from 'lucide-react'
+'use client'
+
+import { ArrowRight } from '@/components/icons'
+import { useManagedToast, ManagedToast } from '@/components/ui/toast'
 
 const services = [
   {
@@ -22,35 +25,40 @@ const services = [
 ]
 
 export function Services() {
+  const toast = useManagedToast()
+
   return (
     <section id="services" className="border-t border-border bg-secondary/40">
-      <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+          <p data-animate data-delay="1" className="text-xs font-semibold uppercase tracking-widest text-accent">
             Services
           </p>
-          <h2 className="mt-4 text-balance font-serif text-3xl leading-tight text-foreground md:text-4xl">
+          <h2 data-animate data-delay="2" className="mt-4 text-balance font-serif text-3xl leading-tight text-foreground md:text-4xl">
             Cleaning built for{' '}
             <span className="italic">real household rhythms.</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground">
+          <p data-animate data-delay="3" className="mx-auto mt-4 max-w-xl text-pretty text-sm leading-relaxed text-muted-foreground">
             A short menu of clearly structured options designed to keep your
             home calm and cared for without friction.
           </p>
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {services.map((service) => (
+          {services.map((service, i) => (
             <article
               key={service.title}
-              className="flex flex-col border border-border bg-card"
+              id={`service-card-${i + 1}`}
+              data-animate
+              data-delay={String(i + 1)}
+              className="hover-lift flex flex-col border border-border bg-card"
             >
               <img
-                src={service.image || '/placeholder.svg'}
+                src={service.image}
                 alt={service.title}
-                className="aspect-[4/3] w-full object-cover"
+                className="aspect-4/3 w-full object-cover"
               />
-              <div className="flex flex-1 flex-col p-6">
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <p className="text-[11px] font-medium uppercase tracking-widest text-accent">
                   {service.tag}
                 </p>
@@ -60,18 +68,30 @@ export function Services() {
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                   {service.body}
                 </p>
-                <a
-                  href="#contact"
+                <button
+                  id={`service-explore-btn-${i + 1}`}
+                  onClick={() =>
+                    toast.show(
+                      'Online booking coming soon — contact us directly in the meantime!'
+                    )
+                  }
                   className="mt-5 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-primary transition-colors hover:text-accent"
                 >
                   Explore service
-                  <ArrowRight className="size-3.5" aria-hidden="true" />
-                </a>
+                  <ArrowRight className="size-4" strokeWidth={2} aria-hidden="true" />
+                </button>
               </div>
             </article>
           ))}
         </div>
       </div>
+
+      <ManagedToast
+        visible={toast.visible}
+        leaving={toast.leaving}
+        message={toast.message}
+        onClose={toast.hide}
+      />
     </section>
   )
 }

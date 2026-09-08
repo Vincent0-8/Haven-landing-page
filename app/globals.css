@@ -85,10 +85,214 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+  }
+}
+
+/* Scroll-triggered entrance — visibly slow & smooth (1.3 detik) */
+[data-animate] {
+  opacity: 0;
+  transform: translate3d(0, 48px, 0);
+  transition:
+    opacity 1s ease-out,
+    transform 1s ease-out;
+  will-change: opacity, transform;
+}
+[data-animate].in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+[data-delay='1'] { transition-delay: 0.25s; }
+[data-delay='2'] { transition-delay: 0.50s; }
+[data-delay='3'] { transition-delay: 0.75s; }
+[data-delay='4'] { transition-delay: 1.00s; }
+[data-delay='5'] { transition-delay: 1.25s; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  [data-aos] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ================================================
+   GPU-ACCELERATED ANIMATIONS
+   Only uses transform + opacity → compositor thread
+   ================================================ */
+
+/* Ambient floating blob — background atmosphere */
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(18px, -22px, 0) scale(1.04);
+  }
+  66% {
+    transform: translate3d(-14px, 12px, 0) scale(0.97);
+  }
+}
+
+/* Staggered entrance from below */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Fade in only (for blobs / overlays) */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Toast slide in from bottom-right */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Toast slide out */
+@keyframes toast-out {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+}
+
+/* Mobile drawer slide down */
+@keyframes drawer-down {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Header slide-down entrance — visibly slow & smooth */
+@keyframes header-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Hero container smooth lift entrance — visibly slow */
+@keyframes hero-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ================================================
+   UTILITY CLASSES
+   ================================================ */
+
+/* Entrance animation — visibly slow (1.3 detik) */
+.animate-fade-up {
+  animation: fade-up 1.3s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 1.0s ease both;
+}
+
+.animate-header-enter {
+  animation: header-enter 1s ease-out both;
+}
+
+.animate-hero-enter {
+  animation: hero-enter 1.6s ease-out both;
+}
+
+/* Ambient floating blob */
+.animate-blob {
+  animation: blob-float 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Stagger delays for sequential entrance animations — clearly separated steps */
+.stagger-1 { animation-delay: 0.2s; }
+.stagger-2 { animation-delay: 0.45s; }
+.stagger-3 { animation-delay: 0.7s; }
+.stagger-4 { animation-delay: 0.95s; }
+.stagger-5 { animation-delay: 1.2s; }
+
+/* Blob offset delays so each floats independently */
+.blob-delay-2 { animation-delay: -2.5s; }
+.blob-delay-3 { animation-delay: -5s; }
+
+/* Hover lift — GPU-only transform, instantaneous response without delay */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-lift:hover {
+  transform: translate3d(0, -4px, 0);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition-delay: 0s !important;
+}
+
+/* Toast animations */
+.animate-toast-in {
+  animation: toast-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.animate-toast-out {
+  animation: toast-out 0.25s ease both;
+}
+
+/* Mobile drawer animation */
+.animate-drawer-down {
+  animation: drawer-down 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-header-enter,
+  .animate-hero-enter,
+  .animate-blob,
+  .animate-toast-in,
+  .animate-toast-out,
+  .animate-drawer-down {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

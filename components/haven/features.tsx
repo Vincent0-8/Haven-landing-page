@@ -1,4 +1,4 @@
-import { ShieldCheck, CalendarDays, Sparkles, Leaf } from 'lucide-react'
+import { ShieldCheck, CalendarDays, Sparkles, Leaf } from '@/components/icons'
 
 const features = [
   {
@@ -26,10 +26,9 @@ const features = [
 export function Features() {
   return (
     <section id="approach" className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          {/* Image */}
-          <div className="border border-border">
+          <div data-animate className="hover-lift border border-border">
             <img
               src="/images/feature.png"
               alt="A calm, sunlit coastal living and dining space, clean and organized"
@@ -37,25 +36,30 @@ export function Features() {
             />
           </div>
 
-          {/* Feature grid */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-accent">
+            <p data-animate data-delay="1" className="text-xs font-semibold uppercase tracking-widest text-accent">
               The standard of care
             </p>
-            <h2 className="mt-4 text-balance font-serif text-3xl leading-tight text-foreground md:text-4xl">
+            <h2 data-animate data-delay="2" className="mt-4 text-balance font-serif text-3xl leading-tight text-foreground md:text-4xl">
               Precision you can{' '}
               <span className="italic">actually feel.</span>
             </h2>
-            <p className="mt-4 max-w-lg text-pretty text-sm leading-relaxed text-muted-foreground">
+            <p data-animate data-delay="3" className="mt-4 max-w-lg text-pretty text-sm leading-relaxed text-muted-foreground">
               Every visit is designed around trust, consistency, and quiet
-              precision — so the experience feels as refined as the result.
+              precision &mdash; so the experience feels as refined as the result.
             </p>
 
-            <div className="mt-8 grid gap-px border border-border bg-border sm:grid-cols-2">
-              {features.map((feature) => (
-                <div key={feature.title} className="bg-card p-6">
-                  <span className="flex size-9 items-center justify-center bg-secondary text-primary">
-                    <feature.icon className="size-4.5" aria-hidden="true" />
+            <div className="mt-8 grid grid-cols-1 gap-px border border-border bg-border sm:grid-cols-2">
+              {features.map((feature, i) => (
+                <div
+                  key={feature.title}
+                  id={`feature-${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  data-animate
+                  data-delay={String(i + 1)}
+                  className="group bg-card p-5 transition-colors hover:bg-secondary/60 sm:p-6"
+                >
+                  <span className="flex size-8 items-center justify-center bg-secondary text-primary transition-colors group-hover:bg-accent group-hover:text-accent-foreground">
+                    <feature.icon className="size-4" strokeWidth={2} aria-hidden="true" />
                   </span>
                   <h3 className="mt-4 text-sm font-semibold text-foreground">
                     {feature.title}

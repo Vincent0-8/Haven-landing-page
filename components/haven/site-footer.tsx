@@ -1,23 +1,31 @@
-import { Waves, ArrowRight } from 'lucide-react'
+import { ArrowRight } from '@/components/icons'
+import { HavenLogo } from '@/components/haven/logo'
 
 const columns = [
   {
     heading: 'Services',
-    links: ['Recurring Cleaning', 'Deep Reset', 'Move In / Move Out'],
+    links: [
+      { label: 'Recurring Cleaning', href: '#services' },
+      { label: 'Deep Reset', href: '#services' },
+      { label: 'Move In / Move Out', href: '#services' },
+    ],
   },
   {
     heading: 'Company',
-    links: ['Approach', 'Reviews', 'FAQ'],
+    links: [
+      { label: 'Approach', href: '#approach' },
+      { label: 'Reviews', href: '#reviews' },
+      { label: 'Contact', href: '#contact' },
+    ],
   },
 ]
 
 export function SiteFooter() {
   return (
     <footer id="contact" className="border-t border-border bg-primary text-primary-foreground">
-      {/* CTA band */}
-      <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-20">
         <div className="grid gap-8 border-b border-primary-foreground/20 pb-14 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-          <div>
+          <div data-animate>
             <p className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/70">
               Get in touch
             </p>
@@ -25,42 +33,40 @@ export function SiteFooter() {
               Tell us about your home and we&apos;ll take care of the rest.
             </h2>
           </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+          <div data-animate data-delay="2" className="flex flex-col gap-3 sm:flex-row lg:justify-end">
             <a
-              href="mailto:hello@marea.care"
+              id="footer-contact-btn"
+              href="mailto:hello@haven.care"
               className="inline-flex items-center justify-center gap-2 bg-primary-foreground px-6 py-3 text-sm font-medium text-primary transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               Contact us
-              <ArrowRight className="size-4" aria-hidden="true" />
+              <ArrowRight className="size-4" strokeWidth={2} aria-hidden="true" />
             </a>
           </div>
         </div>
 
-        {/* Footer bottom */}
-        <div className="grid gap-10 pt-14 md:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="flex size-8 items-center justify-center bg-primary-foreground text-primary">
-                <Waves className="size-4" aria-hidden="true" />
-              </span>
-              <span className="font-serif text-xl font-semibold">Marea</span>
-            </div>
+        <div className="grid gap-10 pt-14 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr]">
+          <div data-animate>
+            <HavenLogo inverted />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-primary-foreground/70">
               Coastal residential home care designed for calm, consistent, and
               beautifully maintained spaces.
             </p>
           </div>
 
-          {columns.map((col) => (
-            <div key={col.heading}>
+          {columns.map((col, i) => (
+            <div key={col.heading} data-animate data-delay={String(i + 1)}>
               <p className="text-xs font-semibold uppercase tracking-widest text-primary-foreground/60">
                 {col.heading}
               </p>
               <ul className="mt-4 space-y-3 text-sm text-primary-foreground/80">
                 {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="transition-colors hover:text-primary-foreground">
-                      {link}
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="transition-colors hover:text-primary-foreground"
+                    >
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -70,8 +76,8 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-14 flex flex-col gap-2 border-t border-primary-foreground/20 pt-6 text-xs text-primary-foreground/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Marea Home Care. All rights reserved.</p>
-          <p>hello@marea.care · Mon–Sat, 9:00–18:00</p>
+          <p>&copy; {new Date().getFullYear()} Haven Home Care. All rights reserved.</p>
+          <p>hello@haven.care &middot; Mon&ndash;Sat, 9:00&ndash;18:00</p>
         </div>
       </div>
     </footer>

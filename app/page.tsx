@@ -1,19 +1,21 @@
-import { SiteHeader } from '@/components/marea/site-header'
-import { Hero } from '@/components/marea/hero'
-import { Services } from '@/components/marea/services'
-import { Features } from '@/components/marea/features'
-import { Testimonials } from '@/components/marea/testimonials'
-import { SiteFooter } from '@/components/marea/site-footer'
+import { SiteHeader } from '@/components/haven/site-header'
+import { Hero } from '@/components/haven/hero'
+import { Services } from '@/components/haven/services'
+import { Features } from '@/components/haven/features'
+import { Testimonials } from '@/components/haven/testimonials'
+import { SiteFooter } from '@/components/haven/site-footer'
 
 export default function Page() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <Hero />
-      <Services />
-      <Features />
-      <Testimonials />
+      <main id="main-content">
+        <Hero />
+        <Services />
+        <Features />
+        <Testimonials />
+      </main>
       <SiteFooter />
-    </main>
+    </div>
   )
 }

@@ -2,6 +2,8 @@
 
 A coastal home care and residential cleaning landing page designed for calm, consistent, and beautifully maintained spaces. Built with Next.js 16 (App Router), React 19, and Tailwind CSS v4.
 
+# Live Demo: https://haven-landing-app.vercel.app/
+
 ---
 
 ## Design System
@@ -51,7 +53,7 @@ Haven-landing-page/
 - **Framework**: [Next.js 16](https://nextjs.org) (Turbopack, App Router)
 - **UI Runtime**: [React 19](https://react.dev)
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com) + `@tailwindcss/postcss`
-- **Color Space**: Native OKLCH color model 
+- **Color Space**: Native OKLCH color model
 - **Typography**: [Google Fonts](https://fonts.google.com) (`next/font` — Fraunces & Inter)
 - **Icons**: [Lucide React](https://lucide.dev)
 - **Telemetry**: [@vercel/analytics](https://vercel.com/analytics)

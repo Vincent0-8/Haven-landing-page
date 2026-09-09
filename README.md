@@ -6,6 +6,12 @@ A coastal home care and residential cleaning landing page designed for calm, con
 
 ---
 
+## Development Process
+
+This landing page was scaffolded using v0.dev (Vercel) from a design reference, then manually customized. The implementation involved refining the copy, configuring custom color tokens, setting typography, and refactoring the component structure for production.
+
+---
+
 ## Design System
 
 - **Color Palette**: Perceptually uniform coastal tones—Deep Coastal Blue (`primary`), Ocean Cyan (`accent`), and warm seafoam/sand backgrounds (`background`, `card`).
